@@ -1,0 +1,39 @@
+{
+  "profiles": [
+    {
+      "name": "WIN_BASE_IR",
+      "description": "User, IP, processes",
+      "os": "windows",
+      "commands": [
+        "echo === WINDOWS BASELINE IR ===",
+        "whoami /all",
+        "hostname",
+        "ipconfig /all",
+        "tasklist /v"
+      ]
+    },
+    {
+      "name": "WIN_PERSIST",
+      "description": "services & startup",
+      "os": "windows",
+      "commands": [
+        "echo === WINDOWS PERSISTENCE ENUM ===",
+        "sc.exe query type= service state= all",
+        "Get-CimInstance Win32_StartupCommand | Select-Object Name,Command,Location",
+		"schtasks.exe /query /fo LIST /v"
+      ]
+    },
+    {
+      "name": "LINUX_BASE_IR",
+      "description": "id, ip, ps aux",
+      "os": "linux",
+      "commands": [
+        "echo '=== LINUX BASELINE IR ==='",
+        "id",
+        "hostnamectl",
+        "ip a",
+        "ps aux"
+      ]
+    }
+  ]
+}

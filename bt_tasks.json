@@ -1,0 +1,38 @@
+{
+  "tasks": [
+    {
+      "name": "T1059.001",
+      "phase": "Execution",
+      "description": "PS recon demo",
+      "os": "windows",
+      "marker": "BT_PS_RECON",
+      "lines": [
+        "whoami",
+        "Get-Process | Select-Object -First 5",
+        "Get-NetTCPConnection -State Established"
+      ]
+    },
+    {
+      "name": "T1082",
+      "phase": "Discovery",
+      "description": "System info demo",
+      "os": "windows",
+      "marker": "BT_SYSINFO",
+      "lines": [
+        "systeminfo | findstr /B /C:\"OS Name\" /C:\"OS Version\"",
+        "wmic computersystem get model,name,manufacturer"
+      ]
+    },
+    {
+      "name": "T1016",
+      "phase": "Discovery",
+      "description": "Network config",
+      "os": "windows",
+      "marker": "BT_NETCFG",
+      "lines": [
+        "ipconfig /all",
+        "arp -a"
+      ]
+    }
+  ]
+}
