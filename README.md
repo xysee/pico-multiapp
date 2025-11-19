@@ -69,6 +69,9 @@ served over Wi-Fi from a JSON endpoint. Each task simulates a (non-malicious)
 - On run (ARMED):
   1. Auto-opens a terminal (like IR Helper, based on `os`)
   2. Types each command in `lines[]`
+      - T1059.001: whoami, first 5 running processes, all established tcp connections
+      - T1082: system information discovery (figures out what kind of machine the program is being run on)
+      - T1016: network config, shows arp table for recent network traffic
   3. Types `echo BT_MARKER <marker>` so you can hunt for it in logs
   4. Appends a log entry to **`bt_log.txt`** with timestamp, task name, phase, source
 
