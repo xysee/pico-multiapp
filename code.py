@@ -1,4 +1,4 @@
-# code.py  -- Pico launcher for two apps
+# code.py  -- Pico launcher for two apps (unified button timing)
 
 import time
 import board
@@ -35,9 +35,9 @@ button_pin.pull = digitalio.Pull.UP  # not pressed=True, pressed=False
 keyboard = Keyboard(usb_hid.devices)
 layout = KeyboardLayoutUS(keyboard)
 
-# Timing thresholds (seconds)
-MIN_PRESS = 0.08     # ignore ultra-short glitches
-LONG_PRESS = 0.55    # >= long → long press, between min & long → short
+# Timing thresholds (seconds) – same everywhere
+MIN_PRESS = 0.02      # ignore only ultra-short bounces
+LONG_PRESS = 0.60     # >= long → long press, between min & long → short
 
 
 def is_armed():
@@ -94,7 +94,7 @@ def launcher_menu():
         oled.text("Long: start", 0, 58, 1)
 
         oled.show()
-        time.sleep(0.03)  # slightly faster for smoother feel
+        time.sleep(0.03)
 
 
 while True:
@@ -106,3 +106,4 @@ while True:
         beacon_trainer.run(oled, button_pin, armed_pin, keyboard, layout)
 
     # When the chosen app returns, show launcher again
+
